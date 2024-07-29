@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUIZ</title>
     <style>
-        
         .quiz {
-            width: 80%;
-            background-color: rgb(236, 233, 213);
+            width: 50%; /* change this accordingly*/
+            /* background-color: rgb(236, 233, 213); */
             text-align: center;
             padding: 20px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 5px;
-            margin:0 auto;
-            margin-top: 50px;
+            margin: 0 auto;
+            /* margin-top: 20px; */
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
 
@@ -25,7 +25,7 @@
             align-items: center;
         }
 
-        .quiz .next-btn{
+        .quiz .next-btn {
             margin-top: 20px;
         }
 
@@ -86,87 +86,93 @@
             background: #ff9393;
         }
 
-        #timer-toggle{
-            display:flex;
-            gap:20px;
+        #timer-toggle {
+            display: flex;
+            gap: 20px;
             /* justify-content: space-evenly; */
             /* background-color: #9aeabc; */
             text-align: center;
             align-items: center;
             flex-wrap: wrap;
-            justify-content:center;
+            justify-content: center;
         }
 
-       .timer-on {
-  position: relative;
-  display: inline-block;
-  width: 49px;
-  height: 21px;
-}
+        .timer-on {
+            position: relative;
+            display: inline-block;
+            width: 49px;
+            height: 21px;
+        }
 
-/* Hide default HTML checkbox */
-.timer-on input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        /* Hide default HTML checkbox */
+        .timer-on input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 2px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-input:checked + .slider {
-  background-color: #000000;
-}
+        input:checked+.slider {
+            background-color: #000000;
+        }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #4a4949;
-}
+        input:focus+.slider {
+            box-shadow: 0 0 1px #4a4949;
+        }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
 
-.slider.round:before {
-  border-radius: 50%;
-}
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+
         /*for mobile screen*/
         @media only screen and (max-width: 600px) {
+
+            .quiz {
+
+                width: 80%;
+                margin: 0 auto;
+            }
+
             .quiz h2 {
                 font-size: 20px;
             }
 
-            .quiz{
-                margin:0 auto;
-            }
             .btn {
                 width: 100%;
             }
@@ -174,6 +180,15 @@ input:checked + .slider:before {
             .btn-container {
                 font-size: 16px;
             }
+
+            #question-image{
+                width: 100%;
+                height: auto;
+                border-radius:white 2px solid;
+                
+            }
+
+
         }
 
         /* Tablets (portrait and landscape) */
@@ -190,28 +205,51 @@ input:checked + .slider:before {
                 width: 75%;
             }
         }
+
+        #question-image {
+            width: 100%;
+            /* height: auto; */
+            display: none;
+            margin: 0 auto;
+            border-radius: 10px;
+            /* border: black 2px solid; */
+        }
+
+        #timer {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        #time {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 2px;
+        }
     </style>
 </head>
+
 <body>
     <div class="quiz">
-        <h1>QUIZ</h1>
+        <div id="Quiztitle">
+            <h1>QUIZ</h1>
+        </div>
         <div id="timer">Time left: <span id="time">15</span> seconds</div>
-        
+
         <div id="totalques">no of questions---</div>
         <div id="timer-toggle">
-            <h3>Timer</h3> 
+            <h3>Timer</h3>
             <label class="timer-on">
-            <input type="checkbox" id="timer-on" checked>
-            <span class="slider round"></span>
+                <input type="checkbox" id="timer-on" checked>
+                <span class="slider round"></span>
             </label>
         </div>
-        <img id="question-image" src="" alt="Question Image" style="width: 100%; height: auto; display: none;">
+        <img id="question-image" src="" alt="Question Image">
         <h2 id="question">Question goes here</h2>
         <div id="answer-buttons" class="btn-container"></div>
         <button id="next-btn" class="next-btn">Next</button>
         <button id="start-btn" class="start-btn">Start Quiz</button>
         <div id="result" class="result"></div>
-        
+
     </div>
 </body>
 <script>
@@ -238,7 +276,7 @@ input:checked + .slider:before {
         },
         {
             question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
-            image: "https://www.revv.co.in/blogs/wp-content/uploads/2020/04/places-to-visit-in-vizag.jpg",
+            image:"https://www.revv.co.in/blogs/wp-content/uploads/2020/04/places-to-visit-in-vizag.jpg" ,
             answers: [
                 { text: "Stratosphere", correct: false },
                 { text: "Mesosphere", correct: false },
@@ -263,7 +301,7 @@ input:checked + .slider:before {
     let timeLeft = 15;
     let timer;
 
-    timerContainer.style.display="none";
+    timerContainer.style.display = "none";
     totalques.innerHTML = "Questions: " + questions.length;
 
     function startQuiz() {
@@ -272,7 +310,8 @@ input:checked + .slider:before {
         // nextButton.innerHTML = "Next";
         startButton.style.display = "none";
         timerToggleContainer.style.display = "none";
-        totalques.style.display="none";
+        totalques.style.display = "none";
+        Quiztitle.style.display = "none";
         showQuestion();
     }
 
@@ -336,6 +375,7 @@ input:checked + .slider:before {
         setTimeout(handleNextButton, 1000); // Move to the next question after 1 second
     }
 
+
     function showScore() {
         resetState();
         let message = '';
@@ -343,11 +383,11 @@ input:checked + .slider:before {
         let scorePercentage = (score / totalQuestions) * 100;
 
         if (score === totalQuestions) {
-            message = 'Congratulations! You got a perfect score of 10/10!';
+            message = `Congratulations! You got a perfect score of ${score}/${totalQuestions}!`;
         } else if (score >= 8) {
             message = `You are almost there! Your score is ${score}/${totalQuestions}.`;
         } else {
-            message = `Please go through the concepts again for better understanding. Your score is ${score}/${totalQuestions}.`;
+            message = `Please go through the concepts again. Your score is ${score}/${totalQuestions}.`;
         }
 
         questionElement.innerHTML = message;
@@ -357,6 +397,8 @@ input:checked + .slider:before {
         nextButton.style.display = "block";
         timerContainer.style.display = "none"; // Hide the timer at the end of the quiz
         timerToggleContainer.style.display = "none"; // Show the timer toggle again
+
+        nextButton.onclick = resetQuiz;
     }
 
     function handleNextButton() {
@@ -379,18 +421,32 @@ input:checked + .slider:before {
         }, 1000);
     }
 
-    nextButton.addEventListener("click", () => {
-        if (currentQuestionIndex < questions.length) {
-            handleNextButton();
-        } else {
-            startQuiz();
-        }
-    });
+    function resetQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        questionElement.innerHTML = "Question goes here";
+        questionImage.style.display = "none";
+        questionImage.src = ""; // Clear the image source
+        startButton.style.display = "block";
+        timerToggleContainer.style.display = "block";
+        timerContainer.style.display = "none";
+        nextButton.style.display = "none";
+        Quiztitle.style.display = "block";
+        totalques.style.display = "block";
+        // Reset styles for the "Start Quiz" button and timer toggle
+        startButton.innerHTML = "Start Quiz";
+        timerToggle.checked = true;
+        timerElement.innerHTML = "15"; // Reset the timer display
+    }
+
+
 
     startButton.addEventListener("click", startQuiz);
 
     // Show start button and timer toggle at the beginning
     startButton.style.display = "block";
     // timerToggleContainer.style.display = "block";
+
 </script>
+
 </html>
