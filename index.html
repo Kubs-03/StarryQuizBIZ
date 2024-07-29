@@ -7,8 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUIZ</title>
     <style>
+        /* *{ */
+        /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+        /* } */
+
+
         .quiz {
-            width: 80%; /* change this accordingly*/
+            width: 50%;
+            /* change this accordingly*/
+            /* box-sizing: border-box; */
             /* background-color: rgb(236, 233, 213); */
             text-align: center;
             padding: 20px;
@@ -48,6 +55,7 @@
             font-size: large;
             cursor: pointer;
             text-align: center;
+            /* border-style: hidden; */
         }
 
         .btn:hover {
@@ -159,6 +167,25 @@
             border-radius: 50%;
         }
 
+        #question-image {
+            width: 80%;
+            height: auto;
+            display: none;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: black 2px solid;
+        }
+
+        #timer {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        #time {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 2px;
+        }
 
         /*for mobile screen*/
         @media only screen and (max-width: 600px) {
@@ -175,17 +202,18 @@
 
             .btn {
                 width: 100%;
+                padding: 10px;
+                /* border-style: hidden; */
             }
 
             .btn-container {
                 font-size: 16px;
             }
 
-            #question-image{
+            #question-image {
                 width: 100%;
                 height: auto;
-                border-radius:white 2px solid;
-                
+                border-style: hidden;
             }
 
 
@@ -204,26 +232,6 @@
             .btn {
                 width: 75%;
             }
-        }
-
-        #question-image {
-            width: 100%;
-            /* height: auto; */
-            display: none;
-            margin: 0 auto;
-            border-radius: 10px;
-            /* border: black 2px solid; */
-        }
-
-        #timer {
-            padding: 5px;
-            margin: 5px;
-        }
-
-        #time {
-            font-weight: bold;
-            font-size: 20px;
-            padding: 2px;
         }
     </style>
 </head>
@@ -256,7 +264,7 @@
     const questions = [
         {
             question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
-            image: "https://lp-cms-production.imgix.net/news/2019/06/taj-mahal.jpg?auto=format&fit=crop&q=40&sharp=10&vib=20&ixlib=react-8.6.4",
+            // image: "https://lp-cms-production.imgix.net/news/2019/06/taj-mahal.jpg?auto=format&fit=crop&q=40&sharp=10&vib=20&ixlib=react-8.6.4",
             answers: [
                 { text: "Stratosphere", correct: false },
                 { text: "Mesosphere", correct: false },
@@ -276,7 +284,7 @@
         },
         {
             question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
-            image:"https://www.revv.co.in/blogs/wp-content/uploads/2020/04/places-to-visit-in-vizag.jpg" ,
+            image: "places-to-visit-in-vizag.jpg",
             answers: [
                 { text: "Stratosphere", correct: false },
                 { text: "Mesosphere", correct: false },
@@ -321,13 +329,16 @@
         let questionNO = currentQuestionIndex + 1;
 
         if (currentQuestion.image) {
-            questionImage.src = currentQuestion.image;
-            questionImage.style.display = "block";
-        } else {
-            questionImage.style.display = "none";
-        }
+        questionImage.src = currentQuestion.image;
+        questionImage.style.display = "block";
+        questionElement.style.display = "none"; // Hide question text if image is present
+    } else {
+        questionImage.style.display = "none";
         questionElement.innerHTML = questionNO + ". " + currentQuestion.question;
         questionElement.style.display = "block";
+    }
+        // questionElement.innerHTML = questionNO + ". " + currentQuestion.question;
+        // questionElement.style.display = "block";
 
         currentQuestion.answers.forEach(answer => {
             const button = document.createElement("button");
