@@ -7,23 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUIZ</title>
     <style>
-        /* *{ */
-        /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-        /* } */
-
+        *{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
 
         .quiz {
             width: 50%;
             /* change this accordingly*/
-            /* box-sizing: border-box; */
-            /* background-color: rgb(236, 233, 213); */
             text-align: center;
             padding: 20px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 5px;
             margin: 0 auto;
-            /* margin-top: 20px; */
+            margin-top: 10px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .quiz h1 {
+            margin: 0;
+        }
+
+        #quiz_image {
+            height: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background-image: url(temple-3181803_1280.jpg);
+            background-position: center no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .quiz .btn-container {
@@ -40,6 +53,7 @@
             font-size: 25px;
             color: #000000;
             font-weight: 600;
+            margin: 0;
         }
 
         .btn {
@@ -69,6 +83,7 @@
             background: #000000;
             color: #fff;
             font-weight: 500;
+            font-size: 16px;
             width: 150px;
             border: 0;
             padding: 10px;
@@ -96,7 +111,7 @@
 
         #timer-toggle {
             display: flex;
-            gap: 20px;
+            gap: 10px;
             /* justify-content: space-evenly; */
             /* background-color: #9aeabc; */
             text-align: center;
@@ -173,7 +188,8 @@
             display: none;
             margin: 0 auto;
             border-radius: 10px;
-            border: black 2px solid;
+            /* border: black 2px solid; */
+            /* padding:5px; */
         }
 
         #timer {
@@ -185,6 +201,33 @@
             font-weight: bold;
             font-size: 20px;
             padding: 2px;
+        }
+
+        #totalques {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap:10px;
+        }
+
+        #subject {
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        #subject h2{
+            color:#000000;
         }
 
         /*for mobile screen*/
@@ -216,6 +259,10 @@
                 border-style: hidden;
             }
 
+            #quiz_image {
+                width: 100%;
+                height: 200px;
+            }
 
         }
 
@@ -241,18 +288,26 @@
         <div id="Quiztitle">
             <h1>QUIZ</h1>
         </div>
+        <div id="quiz_image">
+            <div id="subject">
+                <h2>Monuments of INDIA</h2>
+            </div>
+        </div>
+
         <div id="timer">Time left: <span id="time">15</span> seconds</div>
 
-        <div id="totalques">no of questions---</div>
-        <div id="timer-toggle">
-            <h3>Timer</h3>
-            <label class="timer-on">
-                <input type="checkbox" id="timer-on" checked>
-                <span class="slider round"></span>
-            </label>
+        <div class="wrapper">
+            <div id="totalques">no of questions---</div>
+            <div id="timer-toggle">
+                <h3>Timer</h3>
+                <label class="timer-on">
+                    <input type="checkbox" id="timer-on" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
         <img id="question-image" src="" alt="Question Image">
-        <h2 id="question">Question goes here</h2>
+        <h2 id="question"></h2>
         <div id="answer-buttons" class="btn-container"></div>
         <button id="next-btn" class="next-btn">Next</button>
         <button id="start-btn" class="start-btn">Start Quiz</button>
@@ -260,36 +315,157 @@
 
     </div>
 </body>
+
 <script>
     const questions = [
-        {
-            question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
-            // image: "https://lp-cms-production.imgix.net/news/2019/06/taj-mahal.jpg?auto=format&fit=crop&q=40&sharp=10&vib=20&ixlib=react-8.6.4",
-            answers: [
-                { text: "Stratosphere", correct: false },
-                { text: "Mesosphere", correct: false },
-                { text: "Troposphere", correct: true },
-                { text: "Thermosphere", correct: false },
-            ]
-        },
-        {
-            question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
+    {
+            question: "What is the name of this monument?",
             image: "https://www.robinage.com/wp-content/uploads/2022/04/jantar-mantar-487736282-800x533.jpg",
             answers: [
-                { text: "Stratosphere", correct: false },
-                { text: "Mesosphere", correct: false },
-                { text: "Troposphere", correct: true },
-                { text: "Thermosphere", correct: false },
+                { text: "Jaigarh Fort", correct: false },
+                { text: "Jantar Mantar", correct: true },
+                { text: "Raj Ghat", correct: false },
+                { text: "Humayun's Tomb", correct: false },
             ]
         },
         {
-            question: "Which layer of the Earth's atmosphere is closest to the Earth's surface?",
-            image: "places-to-visit-in-vizag.jpg",
+            question: "Which monument in New Delhi is known for its 72.5 meters tall minaret, making it the tallest brick minaret in the world?",
+            // image: "https://lp-cms-production.imgix.net/news/2019/06/taj-mahal.jpg?auto=format&fit=crop&q=40&sharp=10&vib=20&ixlib=react-8.6.4",
             answers: [
-                { text: "Stratosphere", correct: false },
-                { text: "Mesosphere", correct: false },
-                { text: "Troposphere", correct: true },
-                { text: "Thermosphere", correct: false },
+                { text: "India Gate", correct: false },
+                { text: "Humayun's Tomb", correct: false },
+                { text: "Qutub Minar ", correct: true },
+                { text: "Jantar Mantar", correct: false },
+            ]
+        },
+        {
+            question: "Where is the Hawa Mahal, also known as the `Palace of Winds` located?",
+            // image: "https://www.robinage.com/wp-content/uploads/2022/04/jantar-mantar-487736282-800x533.jpg",
+            answers: [
+                { text: "Jaipur", correct: true },
+                { text: "Udaipur", correct: false },
+                { text: "Jaisalmer", correct: false },
+                { text: "Bikaner", correct: false },
+            ]
+        },
+        {
+            question: " The Gateway of India is located in which city?",
+            image: "gateway.jpg",
+            answers: [
+                { text: "location: Kolkata", correct: false },
+                { text: "location: Chennai", correct: false },
+                { text: "location: New Delhi", correct: false },
+                { text: "location: Mumbai", correct: true },
+            ]
+        },
+        {
+            question: " Identify this palace located in Jaipur, known for its intricate latticework windows.",
+            image: "hawa-mahal.jpg",
+            answers: [
+                { text: "Mysore Palace", correct: false },
+                { text: "City Palace", correct: false },
+                { text: "Hawa Mahal", correct: true },
+                { text: " Kumbhalgarh Fort", correct: false },
+            ]
+        },
+        {
+            question: "The Charminar is a historic monument and mosque located in which Indian city?",
+            image: "charminar.jpg",
+            answers: [
+                { text: "location: Hyderabad", correct: true },
+                { text: "location: Ahmedabad", correct: false },
+                { text: "location: Lucknow", correct: false },
+                { text: "location: Bhopal", correct: false },
+            ]
+        },
+        {
+            question: " Which monument in Delhi is dedicated to the soldiers who died in World War I?",
+            image: "gateIN.jpg",
+            answers: [
+                { text: "Jantar Mantar", correct: false },
+                { text: "Raj Ghat", correct: false },
+                { text: "Rashtrapati Bhavan", correct: false },
+                { text: "India Gate", correct: true },
+            ]
+        },
+        {
+            question: " Which ancient monument in Odisha is known for its intricate carvings and is a UNESCO World Heritage Site?",
+            image: "sun.jpg",
+            answers: [
+                { text: "Brihadeeswarar Temple", correct: false },
+                { text: "Meenakshi Temple", correct: false },
+                { text: "Konark Sun Temple ", correct: true },
+                { text: "Khajuraho Temples", correct: false },
+            ]
+        },
+        {
+            question: " The Ajanta Caves are located in which state of ",
+            image: "AjantaCaves.jpg",
+            answers: [
+                { text: "location: Uttar Pradesh", correct: false },
+                { text: "location: Bihar", correct: false },
+                { text: "location: Madhya Pradesh", correct: false },
+                { text: "location: Maharashtra ", correct: true },
+            ]
+        },
+        {
+            question: " The Lotus Temple in Delhi is notable for its flower-like shape and serves as the Mother Temple of which religion?",
+            // image: "places-to-visit-in-vizag.jpg",
+            answers: [
+                { text: "Buddhism", correct: false },
+                { text: "Bahá'í Faith", correct: true },
+                { text: "Hinduism", correct: false },
+                { text: "Jainism", correct: false},
+            ]
+        },
+        {
+            question: "Name of the monument ",
+            image: "Sanchi-Stupa.jpg",
+            answers: [
+                { text: "Bodh Gaya", correct: false },
+                { text: "Amravati", correct: false },
+                { text: "Nalanda", correct: false },
+                { text: "Sanchi Stupa", correct: true },
+            ]
+        },
+        {
+            question: "Which monument in Varanasi is considered one of the largest residential universities in Asia?",
+            // image: "places-to-visit-in-vizag.jpg",
+            answers: [
+                { text: "Delhi University", correct: false },
+                { text: "Jawaharlal Nehru University", correct: false },
+                { text: "Banaras Hindu University", correct: true },
+                { text: "Aligarh Muslim University", correct: false },
+            ]
+        },
+        {
+            question: " Which fort in Rajasthan is known for its large cannon, Jaivana, and its intricate palaces?",
+            image: "Jaigarh.jpg",
+            answers: [
+                { text: "Jaigarh Fort", correct: true },
+                { text: "Chittorgarh Fort", correct: false },
+                { text: "Mehrangarh Fort", correct: false },
+                { text: "Amer Fort", correct: false },
+            ]
+        },
+        {
+            question: "  What is the name of this palace located in Udaipur, Rajasthan?",
+            image: "lake.jpg",
+            answers: [
+                { text: "City Palace", correct: false },
+                { text: "Lake Palace", correct: true },
+                { text: "Umaid Bhawan Palace", correct: false },
+                { text: "Rambagh Palace", correct: false },
+            ]
+        },
+        {
+            question: "Identify this ancient stepwell in Gujarat, a UNESCO World Heritage site.",
+            image: "Rani-ki.jpg",
+            answers: [
+                { text: "Adalaj Stepwell", correct: false },
+                { text: "Chand Baori", correct: false },
+                { text: " Rani ki Vav", correct: true },
+                { text: "Agrasen ki Baoli", correct: false },
             ]
         }
     ];
@@ -303,6 +479,8 @@
     const timerContainer = document.getElementById("timer");
     const timerToggle = document.getElementById("timer-on");
     const timerToggleContainer = document.getElementById("timer-toggle");
+    const quizimage = document.getElementById("quiz_image");
+    const wrapperup = document.getElementsByClassName("wrapper")
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -320,6 +498,7 @@
         timerToggleContainer.style.display = "none";
         totalques.style.display = "none";
         Quiztitle.style.display = "none";
+        quizimage.style.display = "none";
         showQuestion();
     }
 
@@ -329,14 +508,14 @@
         let questionNO = currentQuestionIndex + 1;
 
         if (currentQuestion.image) {
-        questionImage.src = currentQuestion.image;
-        questionImage.style.display = "block";
-        questionElement.style.display = "none"; // Hide question text if image is present
-    } else {
-        questionImage.style.display = "none";
-        questionElement.innerHTML = questionNO + ". " + currentQuestion.question;
-        questionElement.style.display = "block";
-    }
+            questionImage.src = currentQuestion.image;
+            questionImage.style.display = "block";
+            questionElement.style.display = "none"; // Hide question text if image is present
+        } else {
+            questionImage.style.display = "none";
+            questionElement.innerHTML = questionNO + ". " + currentQuestion.question;
+            questionElement.style.display = "block";
+        }
         // questionElement.innerHTML = questionNO + ". " + currentQuestion.question;
         // questionElement.style.display = "block";
 
@@ -435,15 +614,20 @@
     function resetQuiz() {
         currentQuestionIndex = 0;
         score = 0;
-        questionElement.innerHTML = "Question goes here";
+        questionElement.innerHTML = "";
         questionImage.style.display = "none";
         questionImage.src = ""; // Clear the image source
         startButton.style.display = "block";
-        timerToggleContainer.style.display = "block";
+        timerToggleContainer.style.display = "flex";
         timerContainer.style.display = "none";
         nextButton.style.display = "none";
         Quiztitle.style.display = "block";
-        totalques.style.display = "block";
+        totalques.style.display = "flex";
+        // wrapperup[0].style.display = "flex";
+        // totalques.style.visibility = "visible";
+        // timerToggleContainer.style.visibility = "visible";
+        // wrapperup.style.display="block";
+        quizimage.style.display = "flex";
         // Reset styles for the "Start Quiz" button and timer toggle
         startButton.innerHTML = "Start Quiz";
         timerToggle.checked = true;
